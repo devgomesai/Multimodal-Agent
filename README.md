@@ -21,7 +21,7 @@ An intelligent image generation agent built with LangGraph that transforms your 
 
 1. **Clone the repository**
    ```bash
-   git clone 
+   git clone https://github.com/devgomesai/imageagents.git
    cd image-gen-agent
    ```
 
