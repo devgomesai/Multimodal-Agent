@@ -6,13 +6,6 @@ from .models import get_chat_model, get_image_gen_client
 from .prompts import CREATE_IMAGE_PROMPT
 
 
-class ImageState(TypedDict):
-    message: str
-    refined_prompt: Optional[str]
-    image_urls: List[str]
-    current_step: Literal["pending", "in_progress", "completed"]  
-    error: Optional[str]
-
 
 def refine_user_prompt(state: ImageState) -> ImageState:
     """
