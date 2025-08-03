@@ -49,7 +49,7 @@ def generate_images(state: ImageState) -> ImageState:
         
         return {
             **state,
-            "image_urls": image_url,
+            "image_url": image_url,
             "current_step": "completed",
             "error": None
         }

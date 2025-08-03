@@ -15,5 +15,5 @@ print("User-Message: ", response["message"])
 print()
 print("Refined Prompt: ", response["refined_prompt"])
 print()
-print("Image Data: ", response["image_urls"])
+print("Image Data: ", response["image_url"])
 
