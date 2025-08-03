@@ -1,4 +1,4 @@
-# Image Generation Agent
+# 💭 Image Generation Agent 🧠✨
 
 An intelligent image generation agent built with LangGraph that transforms your ideas into high-quality images using AI. The agent uses advanced prompt engineering to refine your descriptions and generate stunning visuals.
 
@@ -21,7 +21,7 @@ An intelligent image generation agent built with LangGraph that transforms your 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone 
    cd image-gen-agent
    ```
 
@@ -163,5 +163,27 @@ If you encounter any issues, please:
 4. Open an issue on GitHub with detailed error information
 
 ---
+### 🔄 Agent Response
+
+- **User Message**: `A man in the future`
+
+- **Refined Prompt**:
+
+  > A sleek cybernetic man in a neon-lit metropolis, wearing a form-fitting graphene suit with iridescent panels, holographic interface displays floating around him, photorealistic digital art, dramatic rim lighting with cyan and magenta accent lights, ultra-detailed facial features with subtle bio-mechanical augmentations, shallow depth of field with background bokeh effects, cinematic composition following rule of thirds, reflective chrome and glass surfaces, volumetric fog adding atmosphere, 8K resolution, hyperdetailed, sharp focus on face, ray-traced lighting, moody and atmospheric, high contrast, architectural elements with clean geometric lines in background, professional color grading, cinematic aspect ratio
+
+![Futuristic Man](https://api.together.ai/shrt/sMAlyOqpb0PlVJCX)
+
+---
+
+### 🧠 Why This Prompt Works
+
+- **Material Detailing**: Graphene, chrome, glass create realism  
+- **Futuristic Cues**: Cybernetic, holograms, bio-augmentations  
+- **Lighting Mastery**: Rim lighting, neon accents, ray-tracing  
+- **Photographic Precision**: Shallow DOF, bokeh, rule of thirds  
+- **Cinematic Mood**: Volumetric fog, moody contrast, color grading  
+- **Styling & Resolution**: 8K sharpness, photorealism, high detail
 
 **Happy Image Generating! 🎨✨**
+-- Demo
+-- 
