@@ -1,4 +1,4 @@
-# 💭 Image Generation Agent 🧠✨
+# 💭 Image Generation Agent + Chat 🧠✨
 
 An intelligent image generation agent built with LangGraph that transforms your ideas into high-quality images using AI. The agent uses advanced prompt engineering to refine your descriptions and generate stunning visuals.
 
