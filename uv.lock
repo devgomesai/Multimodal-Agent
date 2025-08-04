@@ -339,6 +339,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "deepagents" },
+    { name = "langchain-core" },
     { name = "langchain-together" },
     { name = "python-dotenv" },
     { name = "together" },
@@ -347,6 +348,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "deepagents", specifier = ">=0.0.3" },
+    { name = "langchain-core", specifier = ">=0.3.72" },
     { name = "langchain-together", specifier = ">=0.3.1" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "together", specifier = ">=1.5.21" },
