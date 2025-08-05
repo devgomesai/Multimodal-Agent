@@ -199,10 +199,6 @@ The agent uses advanced prompt engineering techniques to enhance your image desc
 - **Technical Details**: Depth of field, lens types, and camera settings
 - **Mood & Atmosphere**: Emotional and atmospheric descriptors for enhanced visual impact
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - Built with [LangGraph](https://github.com/langchain-ai/langgraph)
