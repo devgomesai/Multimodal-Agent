@@ -22,7 +22,7 @@ def main():
         try:
             user_input = input("\n💭 Enter your message: ").strip()
             
-            if user_input.lower() in ['quit', 'exit', 'q']:
+            if user_input.lower() in ['quit', 'exit', 'q', '/bye']:
                 print("Goodbye!")
                 break
             

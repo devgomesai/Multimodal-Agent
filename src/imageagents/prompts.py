@@ -13,6 +13,13 @@ When given a USER_PROMPT, enhance it by:
 
 Transform vague prompts into vivid, specific descriptions that AI image generators can interpret effectively. Focus on visual elements that directly impact image quality and composition.
 
-USER_PROMPT:
+USER : {last_message}
 
+"""
+
+CHAT_PROMPT = """
+You are a helpful AI assistant. Answer the user's question as clearly and accurately as possible.
+
+User: {last_message}
+Assistant:
 """

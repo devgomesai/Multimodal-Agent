@@ -5,7 +5,7 @@ from langgraph.graph import START, END, StateGraph
 from .state import ImageState, MessageClassifier
 import os
 from .models import get_chat_model, get_image_gen_client
-from .prompts import CREATE_IMAGE_PROMPT
+from .prompts import CREATE_IMAGE_PROMPT, CHAT_PROMPT
 
 
 def chat_agent(state: ImageState) -> ImageState:
@@ -15,9 +15,7 @@ def chat_agent(state: ImageState) -> ImageState:
     messages = [
         {
             "role": "system",
-            "content": """
-            You are an intelligent chat bot that helps answer user queries
-            """ 
+            "content": CHAT_PROMPT
         },
         {
             "role": "user",
@@ -139,7 +137,7 @@ def route_decision(state: ImageState) -> str:
     message_type = state.get("message_type", "chat")
     
     if message_type == "image":
-        return "refine_prompt"
+        return "refine"
     else:
         return "chat"
 
@@ -182,7 +180,7 @@ def create_image_generation_graph():
         route_decision,
         {
             "chat": "chat_agent",
-            "refine_prompt": "refine_prompt"
+            "refine": "refine_prompt"
         }
     )
     
