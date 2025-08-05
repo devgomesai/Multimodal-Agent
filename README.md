@@ -46,14 +46,15 @@ An intelligent multi-modal agent built with LangGraph that can both generate hig
    TOGETHER_API_KEY=b4xxxx
 
    # Any one for different chat models (uncomment the one you want to use)
-   # OPENAI_API_KEY=sk-xx
-   # ANTHROPIC_API_KEY=sk-xxx
-   # GOOGLE_API_KEY=Azxxx
+   OPENAI_API_KEY=sk-xx
+   ANTHROPIC_API_KEY=sk-xxx
+   GOOGLE_API_KEY=Azxxx
    ```
 
    Get your API keys from:
 
    - [Together AI](https://together.ai/) (required)
+   - Any one
    - [OpenAI](https://platform.openai.com/) (optional)
    - [Anthropic](https://console.anthropic.com/) (optional)
    - [Google AI Studio](https://aistudio.google.com/) (optional)
@@ -197,14 +198,6 @@ The agent uses advanced prompt engineering techniques to enhance your image desc
 - **Quality Modifiers**: High quality, detailed, sharp focus, 8k resolution
 - **Technical Details**: Depth of field, lens types, and camera settings
 - **Mood & Atmosphere**: Emotional and atmospheric descriptors for enhanced visual impact
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
