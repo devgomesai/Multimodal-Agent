@@ -41,10 +41,7 @@ An intelligent multi-modal agent built with LangGraph that can both generate hig
 
    Create a `.env` file in the project root:
 
-   TOGETHER_API_KEY=bxx
-   ANTHROPIC_API_KEY = sk-xx
-   OPENAI_API_KEY=sk-xx
-   GOOGLE_API_KEY=AIxx
+   `code`
 
    Get your API key from [Together AI](https://together.ai/)
 
