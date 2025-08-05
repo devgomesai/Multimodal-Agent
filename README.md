@@ -41,9 +41,22 @@ An intelligent multi-modal agent built with LangGraph that can both generate hig
 
    Create a `.env` file in the project root:
 
-   `code`
+   ```env
+   # Required for image generation
+   TOGETHER_API_KEY=b4xxxx
 
-   Get your API key from [Together AI](https://together.ai/)
+   # Any one for different chat models (uncomment the one you want to use)
+   # OPENAI_API_KEY=sk-xx
+   # ANTHROPIC_API_KEY=sk-xxx
+   # GOOGLE_API_KEY=Azxxx
+   ```
+
+   Get your API keys from:
+
+   - [Together AI](https://together.ai/) (required)
+   - [OpenAI](https://platform.openai.com/) (optional)
+   - [Anthropic](https://console.anthropic.com/) (optional)
+   - [Google AI Studio](https://aistudio.google.com/) (optional)
 
 ## 🎯 Usage
 
@@ -112,7 +125,10 @@ The project uses LangGraph to create a sophisticated workflow with intelligent r
 
 ### Environment Variables
 
-- `TOGETHER_API_KEY`: Your Together AI API key (required)
+- `TOGETHER_API_KEY`: Your Together AI API key (required for image generation)
+- `OPENAI_API_KEY`: Your OpenAI API key (optional, for GPT models)
+- `ANTHROPIC_API_KEY`: Your Anthropic API key (optional, for Claude models)
+- `GOOGLE_API_KEY`: Your Google API key (optional, for Gemini models)
 
 ### Model Configuration
 
@@ -120,6 +136,37 @@ The agent uses:
 
 - **GPT-4o-mini** for chat responses and prompt refinement (temperature: 0)
 - **FLUX.1-schnell-Free** for image generation (4 steps, 4 images)
+
+### Available Model Options
+
+The project supports multiple AI models for chat and prompt refinement. You can switch between them by modifying the `get_chat_model()` function in `src/imageagents/models.py`:
+
+#### OpenAI (Default)
+
+```python
+def get_chat_model():
+    return init_chat_model("openai:gpt-4o-mini-2024-07-18", temperature=0)
+```
+
+#### Anthropic Claude
+
+```python
+def get_chat_model():
+    return init_chat_model("anthropic:claude-3-5-sonnet-latest", temperature=0)
+```
+
+#### Google Gemini
+
+```python
+def get_chat_model():
+    return init_chat_model("google_genai:gemini-2.5-flash", temperature=0)
+```
+
+**Note**: You'll need the appropriate API keys for each model:
+
+- OpenAI: `OPENAI_API_KEY`
+- Anthropic: `ANTHROPIC_API_KEY`
+- Google: `GOOGLE_API_KEY`
 
 ## 📁 Project Structure
 
