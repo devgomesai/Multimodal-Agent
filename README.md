@@ -1,4 +1,5 @@
-# 💭 Image Generation Agent + Chat Assistant 🧠✨
+# 💭 Multimodal Agent 🧠✨
+![Agent Graph](./graph.png)
 
 An intelligent multi-modal agent built with LangGraph that can both generate high-quality images and engage in conversational interactions. The agent uses advanced prompt engineering to refine your descriptions and generate stunning visuals, while also providing helpful responses to general questions.
 
@@ -61,46 +62,16 @@ An intelligent multi-modal agent built with LangGraph that can both generate hig
 
 ## 🎯 Usage
 
-### Quick Start
-
-Run the interactive agent:
+### ⚡ Minimal (M)
 
 ```bash
+# Run interactive agent (CLI)
 python test.py
-```
 
-The agent will prompt you to enter a message, then:
-
-1. **Classifies** your message as either an image request or chat
-2. **For Image Requests**: Refines your description and generates 4 high-quality image variations
-3. **For Chat**: Provides helpful conversational responses
-4. **Displays** the results
-
-### Example Interactions
-
-#### Image Generation
+# Run with LangGraph Studio
+uv run langgraph dev
 
 ```
-💭 Enter your message: a cat sitting in a garden
-```
-
-**Output:**
-
-- **Message Type**: `image`
-- **Refined Prompt**: "A majestic cat sitting gracefully in a lush garden, surrounded by vibrant flowers and greenery, soft natural lighting, photorealistic style, shallow depth of field, high quality, detailed, 8k resolution"
-- **Image URLs**: [Generated image URLs]
-
-#### Chat Conversation
-
-```
-💭 Enter your message: What is the capital of France?
-```
-
-**Output:**
-
-- **Message Type**: `chat`
-- **AI Response**: "The capital of France is Paris. It's a beautiful city known for its rich history, culture, and iconic landmarks like the Eiffel Tower."
-
 ## 🏗️ Architecture
 
 The project uses LangGraph to create a sophisticated workflow with intelligent routing:
@@ -186,19 +157,6 @@ image-gen-agent/
 ├── my_graph.png              # Workflow visualization
 └── README.md                 # This file
 ```
-
-## 🎨 Prompt Engineering
-
-The agent uses advanced prompt engineering techniques to enhance your image descriptions:
-
-- **Visual Details**: Colors, textures, materials, and specific visual elements
-- **Lighting**: Natural, dramatic, golden hour effects, and atmospheric lighting
-- **Artistic Style**: Photorealistic, digital art, oil painting, and various artistic approaches
-- **Composition**: Centered, rule of thirds, close-up shots, and framing techniques
-- **Quality Modifiers**: High quality, detailed, sharp focus, 8k resolution
-- **Technical Details**: Depth of field, lens types, and camera settings
-- **Mood & Atmosphere**: Emotional and atmospheric descriptors for enhanced visual impact
-
 ## 🙏 Acknowledgments
 
 - Built with [LangGraph](https://github.com/langchain-ai/langgraph)
