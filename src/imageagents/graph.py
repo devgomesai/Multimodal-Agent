@@ -5,7 +5,7 @@ from langgraph.graph import START, END, StateGraph
 from .state import ImageState, MessageClassifier
 import os
 from .models import get_chat_model, get_image_gen_client
-from .prompts import CREATE_IMAGE_PROMPT, CHAT_PROMPT
+from .prompts import CREATE_IMAGE_PROMPT, CREATE_CHAT_PROMPT
 
 
 def chat_agent(state: ImageState) -> ImageState:
@@ -15,7 +15,7 @@ def chat_agent(state: ImageState) -> ImageState:
     messages = [
         {
             "role": "system",
-            "content": CHAT_PROMPT
+            "content": CREATE_CHAT_PROMPT
         },
         {
             "role": "user",
@@ -30,7 +30,6 @@ def chat_agent(state: ImageState) -> ImageState:
         "message": [{"role": "assistant", "content": resp.content}],
         "current_step": "completed"
     }
-
 
 def refine_user_prompt(state: ImageState) -> ImageState:
     try:
@@ -54,7 +53,6 @@ def refine_user_prompt(state: ImageState) -> ImageState:
             "current_step": "error",
             "error": f"Error refining prompt: {str(e)}"
         }
-
 
 def generate_images(state: ImageState) -> ImageState:
     try:
@@ -91,7 +89,6 @@ def generate_images(state: ImageState) -> ImageState:
             "error": f"Error generating images: {str(e)}"
         }
 
-
 def handle_error(state: ImageState) -> ImageState:
     
     error_message = state.get("error", "An unknown error occurred")
@@ -101,7 +98,6 @@ def handle_error(state: ImageState) -> ImageState:
         "current_step": "completed",
         "error": None  
     }
-
 
 def classify_message(state: ImageState) -> ImageState:
 
@@ -119,6 +115,7 @@ def classify_message(state: ImageState) -> ImageState:
             Classify the user message as either:
             - 'image': if user asks for an image to generate, words like create, generate, draw, make an image, etc.
             - 'chat': if user asks for facts, information, solutions, or general conversation
+            - 'video' : if user wants to create a video
             """
         },
         {
@@ -131,82 +128,87 @@ def classify_message(state: ImageState) -> ImageState:
         "message_type": result.message_type
     }
 
-
 def route_decision(state: ImageState) -> str:
 
     message_type = state.get("message_type", "chat")
     
     if message_type == "image":
-        return "refine"
+        return "prompt"
+    elif message_type == "video":
+        return "video"
     else:
         return "chat"
-
 
 def error_check(state: ImageState) -> str:
     
     if state.get("error"):
-        return "handle_error"
+        return "error"
     elif state.get("current_step") == "in_progress":
-        return "generate_images"
+        return "image"
     else:
         return "end"
-
 
 def completion_check(state: ImageState) -> str:
 
     if state.get("error"):
-        return "handle_error"
+        return "error"
     else:
         return "end"
 
+def create_video(state: ImageState) -> bool:
+    ...
 
 def create_image_generation_graph():
     
     workflow = StateGraph(ImageState)
     
     # Nodes
-    workflow.add_node("classify_message", classify_message)
-    workflow.add_node("chat_agent", chat_agent)
-    workflow.add_node("refine_prompt", refine_user_prompt)
-    workflow.add_node("generate_images", generate_images)
-    workflow.add_node("handle_error", handle_error)
+    workflow.add_node("Classify", classify_message)
+    # workflow.add_node("video",  create_video)
+    workflow.add_node("chat", chat_agent)
+    workflow.add_node("prompt", refine_user_prompt)
+    workflow.add_node("image", generate_images)
+    workflow.add_node("error", handle_error)
     
     # Start
-    workflow.add_edge(START, "classify_message")
+    workflow.add_edge(START, "Classify")
     
     # Route based on type of msg
+    
+    # workflow.add_edge("prompt", "video")
+    
     workflow.add_conditional_edges(
-        "classify_message",
+        "Classify",
         route_decision,
         {
-            "chat": "chat_agent",
-            "refine": "refine_prompt"
+            "chat": "chat",
+            "prompt": "prompt",
         }
     )
     
     # Chat agent goes directly to end
-    workflow.add_edge("chat_agent", END)
+    workflow.add_edge("chat", END)
     
     # After refining prompt, check for errors
     workflow.add_conditional_edges(
-        "refine_prompt",
+        "prompt",
         error_check,
         {
-            "generate_images": "generate_images",
-            "handle_error": "handle_error",
+            "image": "image",
+            "error": "error",
         }
     )
     
     workflow.add_conditional_edges(
-        "generate_images",
+        "image",
         completion_check,
         {
-            "handle_error": "handle_error",
+            "error": "error",
             "end": END
         }
     )
     
-    workflow.add_edge("handle_error", END)
+    workflow.add_edge("error", END)
     
     return workflow.compile()
 
